@@ -8,7 +8,7 @@ const items = [
       price: 299.99,
       rating: 5,
       amountInStock: 3,
-      numOfReviews: 1,
+      numOfReviews: 0,
     },
     {
       name: "Bose - Sleepbuds II — Soothing Sounds and Noise-masking Technology Designed for Better Sleep - White/Silve",
@@ -19,7 +19,7 @@ const items = [
       price: 248.99,
       rating: 4,
       amountInStock: 13,
-      numOfReviews: 3,
+      numOfReviews: 0,
     },
     {
       name: "Braun - 6-in-1 Trimmer MGK3221 - Volt Green",
@@ -30,7 +30,7 @@ const items = [
       price: 26.99,
       rating: 5,
       amountInStock: 4,
-      numOfReviews: 10,
+      numOfReviews: 0,
     },
     {
       name: "Swagtron - Swagskate Electric Skateboard w/ 6 mi Max Operating Range & 9.3 mph Max Speed - Black",
@@ -41,7 +41,7 @@ const items = [
       price: 105.99,
       rating: 3,
       amountInStock: 5,
-      numOfReviews: 8,
+      numOfReviews: 0,
     },
     {
       name: 'Samsung - CHG9 Series C49HG90DMN 49" HDR LED Curved FHD FreeSync Monitor - Matte dark blue black',
@@ -52,7 +52,7 @@ const items = [
       price: 899.99,
       rating: 5,
       amountInStock: 1,
-      numOfReviews: 100,
+      numOfReviews: 0,
     },
   ];
 
