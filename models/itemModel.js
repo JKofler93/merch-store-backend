@@ -1,21 +1,13 @@
 import mongoose from 'mongoose';
 
-const reviewSchema = mongoose.Schema(
-    {
-      name: { type: String, required: true },
-      rating: { type: Number, required: true },
-      comment: { type: String, required: true },
-      // adds relationship to user 
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User',
-      },
-    },
-    {
-      timestamps: true,
-    }
-  )
+const reviewSchema = mongoose.Schema({
+    name: { type: String, required: true},
+    rating: { type: Number, required: true},
+    comment: { type: String, required: true},
+}, {
+    // createdAt updatedAt is made auto with this
+    timestamps: true
+})
 
 const itemSchema = mongoose.Schema({
 

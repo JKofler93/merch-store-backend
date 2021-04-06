@@ -6,18 +6,13 @@
   "type": "module",
   "scripts": {
     "start": "node server",
-    "server": "node nodemon server",
-    "data:input": "node seeder add",
-    "data:delete": "node seeder destroy"
+    "server": "nodemon server"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-async-handler": "^1.1.4",
-    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.3",
     "nodemon": "^2.0.7"
   }
