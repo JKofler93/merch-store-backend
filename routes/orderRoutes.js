@@ -16,4 +16,4 @@ router.route('/:id').get(protect, getOrderById)
 router.route('/:id/pay').put(protect, updateOrderToCompleted)
 router.route('/:id/deliver').put(protect, adminUser, updateOrderToDelivered)
 
-export default router;
+export default router
