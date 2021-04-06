@@ -5,8 +5,6 @@ import asyncHandler from 'express-async-handler';
 //route request:  GET /api/items
 //route access: Public
 const getAllItems = asyncHandler(async (req, res) => {
-  const pageSize = 10
-  const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword
     ? {
@@ -17,13 +15,10 @@ const getAllItems = asyncHandler(async (req, res) => {
       }
     : {}
 
-  const count = await Item.countDocuments({ ...keyword })
   const items = await Item.find({ ...keyword })
-    .limit(pageSize)
-    .skip(pageSize * (page - 1))
 
-  res.json({ items, page, pages: Math.ceil(count / pageSize) })
-})
+    res.json({ items })
+  })
 
 //description: Get single item
 //route request:  GET /api/items/:id
@@ -59,16 +54,27 @@ const deleteItem = asyncHandler(async (req, res) => {
 //route request:  POST /api/items
 //route access: Private/Admin
 const createItem = asyncHandler(async (req, res) => {
+
+  const {    
+    name,
+    image,
+    brand,
+    description,
+    category,
+    price,
+    amountInStock,
+    numOfReviews } = req.body;
+    
   const item = new Item({
-    user: req.user._id,
-    name: 'Sample name',
-    image: '/images/sample.jpg',
-    brand: 'Sample brand',
-    description: 'Sample description',
-    category: 'Sample category',
-    price: 0,
-    amountInStock: 0,
-    numOfReviews: 0,
+    name,
+    image,
+    brand,
+    description,
+    category,
+    price,
+    amountInStock,
+    numOfReviews,
+    user: req.user._id
   })
 
   const createdItem = await item.save()
