@@ -62,8 +62,8 @@ const createItem = asyncHandler(async (req, res) => {
     description,
     category,
     price,
-    amountInStock,
-    numOfReviews } = req.body;
+    amountInStock 
+  } = req.body;
     
   const item = new Item({
     name,
@@ -73,7 +73,6 @@ const createItem = asyncHandler(async (req, res) => {
     category,
     price,
     amountInStock,
-    numOfReviews,
     user: req.user._id
   })
 
@@ -123,11 +122,11 @@ const createReview = asyncHandler(async (req, res) => {
   const item = await Item.findById(req.params.id)
 
   if (item) {
-    const isReviewed = item.reviews.find(
+    const itemReviewed = item.reviews.find(
       (review) => review.user.toString() === req.user._id.toString()
     )
 
-    if (isReviewed) {
+    if (itemReviewed) {
       res.status(400)
       throw new Error('Item already reviewed')
     }
@@ -140,8 +139,6 @@ const createReview = asyncHandler(async (req, res) => {
     }
 
     item.reviews.push(review)
-
-    item.numReviews = item.reviews.length
 
     item.rating =
       item.reviews.reduce((acc, item) => item.rating + acc, 0) /

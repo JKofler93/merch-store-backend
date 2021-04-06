@@ -61,13 +61,9 @@ const itemSchema = mongoose.Schema({
         default: 0
     },
 
-    reviews: [reviewSchema],
-    numOfReviews: {
-        type: Number,
-        required: true,
-        default: 0
-    }
-}, {
+    reviews: [reviewSchema]
+    }, 
+{
     // createdAt updatedAt is made auto with this
     timestamps: true
 })
