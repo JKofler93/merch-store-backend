@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
-const reviewSchema = mongoose.Schema(
-    {
+const reviewSchema = mongoose.Schema({
       name: { type: String, required: true },
       rating: { type: Number, required: true },
       comment: { type: String, required: true },
@@ -19,12 +18,6 @@ const reviewSchema = mongoose.Schema(
 
 const itemSchema = mongoose.Schema({
 
-    // Adds relationship between item and a user
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    },
     name: {
         type: String,
         required: true
@@ -55,18 +48,12 @@ const itemSchema = mongoose.Schema({
         required: true,
         default: 0
     },
-    amountInStock: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-
     reviews: [reviewSchema]
-    }, 
-{
-    // createdAt updatedAt is made auto with this
-    timestamps: true
-})
+}, 
+    {
+        // createdAt updatedAt is made auto with this
+        timestamps: true
+    })
 
 const Item = mongoose.model('Item', itemSchema);
 

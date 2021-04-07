@@ -1,23 +1,18 @@
 import express from 'express';
 const router = express.Router();
-import {
-    getAllItems,
-    getItemById,
-    deleteItem,
-    createItem,
-    editItem,
-    createReview,
-    getTopItems
-} from '../controllers/ItemController.js';
-import { protect, adminUser } from '../middleware/auth.js';
+import { getAllItems, getItemById, createReview, getTopItems } from '../controllers/ItemController.js';
+import { protectedRoute } from '../middleware/auth.js';
 
-router.route('/').get(getAllItems).post(protect, adminUser, createItem)
-router.route('/:id/reviews').post(protect, createReview)
-router.get('/top', getTopItems)
-router
-  .route('/:id')
-  .get(getItemById)
-  .delete(protect, adminUser, deleteItem)
-  .put(protect, adminUser, editItem)
+// GET '/api/items';
+router.route('/').get(getAllItems)
 
-export default router
+// POST 'api/items/itemId/reviews'
+router.route('/:id/reviews').post(protectedRoute, createReview);
+
+// GET 'api/items/topItems'
+router.get('/topItems', getTopItems);
+
+// GET 'api/items/itemId'
+router.route('/:id').get(getItemById);
+
+export default router;

@@ -60,14 +60,6 @@ const orderSchema = mongoose.Schema({
     paidAt: {
         type: Date
     },
-    isDelivered: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    deliveredAt: {
-        type: Date
-    },
 }, {
     // createdAt updatedAt is made auto with this
     timestamps: true

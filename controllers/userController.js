@@ -75,7 +75,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
 // description:    Get user profile
 // route request:   GET api/users/profile
-// route access:  Private
+// route access:  Private + Token needed
 const getProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
@@ -95,7 +95,7 @@ const getProfile = asyncHandler(async (req, res) => {
 
 // description:    Edit user profile
 // route request:   PUT api/users/profile
-// route access:  Private
+// route access:  Private + Token needed
 const editProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 

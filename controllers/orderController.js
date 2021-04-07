@@ -19,7 +19,6 @@ const addItemToOrder = asyncHandler(async (req, res) => {
   if (orderItems && orderItems.length === 0) {
     res.status(400)
     throw new Error('No order items')
-    return
   } else {
     const order = new Order({
       orderItems,
@@ -29,7 +28,7 @@ const addItemToOrder = asyncHandler(async (req, res) => {
       itemsPrice,
       taxPrice,
       shippingPrice,
-      totalPrice,
+      totalPrice
     })
 
     const createdOrder = await order.save()
@@ -41,7 +40,7 @@ const addItemToOrder = asyncHandler(async (req, res) => {
 
 //description: Get order by Id
 //route request: GET /api/orders/:id
-//route access: Private
+//route access: Private + Token needed
 const getOrderById = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     'user',
@@ -58,7 +57,7 @@ const getOrderById = asyncHandler(async (req, res) => {
 
 //description: Update order to paid
 //route request: GET /api/orders/:id/pay
-//route access: Private
+//route access: Private + Token needed
 const updateOrderToCompleted = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
@@ -71,25 +70,6 @@ const updateOrderToCompleted = asyncHandler(async (req, res) => {
       update_time: req.body.update_time,
       email_address: req.body.payer.email_address,
     }
-
-    const updatedOrder = await order.save()
-
-    res.json(updatedOrder)
-  } else {
-    res.status(404)
-    throw new Error('Order not found')
-  }
-})
-
-//description: Update order to delivered
-//route request: GET /api/orders/:id/deliver
-//route access: Private + Admin
-const updateOrderToDelivered = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
-
-  if (order) {
-    order.isDelivered = true
-    order.deliveredAt = Date.now()
 
     const updatedOrder = await order.save()
 
@@ -121,7 +101,6 @@ export {
   addItemToOrder,
   getOrderById,
   updateOrderToCompleted,
-  updateOrderToDelivered,
   getUserOrders,
   getOrders
 }

@@ -14,11 +14,6 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    },
-    isAdmin: {
-        type: Boolean,
-        required: true,
-        default: false
     }
 }, {
     // createdAt updatedAt is made auto with this
@@ -29,8 +24,6 @@ const userSchema = mongoose.Schema({
 userSchema.methods.matchPassword = async function(passwordInput) {
     return await bcrypt.compare(passwordInput, this.password);
 } 
-
-
 
 const User = mongoose.model('User', userSchema);
 
